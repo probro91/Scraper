@@ -2,7 +2,7 @@ import re
 import bs4 as BeautifulSoup
 import requests
 
-def Scraping(WebUrl, function):
+def Scraping(WebUrl):
     url = WebUrl
     code = requests.get(url)
     plain = code.text
@@ -14,5 +14,5 @@ def Scraping(WebUrl, function):
 
 startUrl = "https://www.simplyrecipes.com/dinner-recipes-5091433"
 listOfRecipes = []
-Scraping(startUrl, 0)
+Scraping(startUrl)
 print(listOfRecipes)
