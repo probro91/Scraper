@@ -8,15 +8,11 @@ html_content = requests.get(url).text
 
 # Parse the html content
 soup = BeautifulSoup(html_content, "html.parser")
- 
-# Find the specifc div tag
-datas = soup.find("div", id="structured-ingredients_1-0").find("span")
- 
-
-
-# Iterate through all li tags
-#for data in datas:
-    # Get text from each tag
-    #print(data.text)
- 
+    
+spans = soup.find_all("span", attrs={"data-ingredient-name":"true"})
+recipeTitle = soup.find("h1", {"class": "heading__title"})
+print(recipeTitle.text)
+for ingredient in spans:
+    print(ingredient.text)
+    
 
