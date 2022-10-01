@@ -11,8 +11,11 @@ def Scraping(WebUrl, function):
         recipe = link.get('href')
         if "-recipe-" in recipe:
             listOfRecipes.append(recipe)
+    
 
 startUrl = "https://www.simplyrecipes.com/dinner-recipes-5091433"
 listOfRecipes = []
 Scraping(startUrl, 0)
 print(listOfRecipes)
+
+
