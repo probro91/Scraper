@@ -1,30 +1,37 @@
-import re
+#import re
 import bs4 as BeautifulSoup
 import requests
 
-def Scraping(WebUrl, function):
+def Scraping(WebUrl):
     url = WebUrl
     code = requests.get(url)
     plain = code.text
     soup = BeautifulSoup.BeautifulSoup(plain, 'html.parser')
-    if function == "Getting recipes":
-        for link in soup.findAll('a'):
-            recipe = link.get('href')
-            if "-recipe-" in recipe:
-                listOfRecipes.append(recipe)
-        listOfRecipes.pop()
-        print(listOfRecipes)
-    if function == "Getting ingredients and title":
-        spans = soup.find_all("span", attrs={"data-ingredient-name":"true"})
-        recipeTitle = soup.find("h1", {"class": "heading__title"})
-        print(recipeTitle.text)
+    for link in soup.findAll('a'):
+        recipe = link.get('href')
+        if "-recipe-" in recipe:
+            listOfRecipes.append(recipe)
+    listOfRecipes.pop()
+    for recipe in listOfRecipes:
+        code = requests.get(recipe).text
+        soupIngredient = BeautifulSoup.BeautifulSoup(code, 'html.parser')
+        listOfIngredients = []
+        spans = soupIngredient.find_all("span", attrs={"data-ingredient-name":"true"})
+        recipeTitle = soupIngredient.find("h1", {"class": "heading__title"})
+        listOfIngredients.append(recipeTitle.text)
         for ingredient in spans:
-            print(ingredient.text)
+            listOfIngredients.append(ingredient.text)
+        eachUrl.update({recipe:listOfIngredients})
     
-
+eachUrl = {}
 startUrl = "https://www.simplyrecipes.com/dinner-recipes-5091433"
+startIngredients = ['mushrooms','Italian sausage','lemon juice']
 listOfRecipes = []
-Scraping(startUrl, "Getting recipes")
-for recipe in listOfRecipes:
-    Scraping(recipe, "Getting ingredients and title")
+Scraping(startUrl)
+
+for recipe in eachUrl:
+    if all(item in eachUrl[recipe] for item in startIngredients):
+        print(eachUrl[recipe])
+
+#print(eachUrl)
 
