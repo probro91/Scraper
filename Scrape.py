@@ -34,7 +34,7 @@ def Scraping(WebUrl):
     #print("Time after ingredients" + str(time.time_ns()))
     
 eachUrl = {}
-mealType = input("Do you want 'Breakfast', 'Lunch', 'Dinner', 'Dessert, or 'Snacks&Apps' recipes?")
+mealType = str(request.form.get("mealType"))
 if mealType.lower() == 'breakfast':
     startUrl = "https://www.simplyrecipes.com/breakfast-recipes-5091541"
 elif mealType.lower() == 'lunch':
@@ -47,7 +47,7 @@ elif mealType.lower() == 'snacks&apps':
     startUrl = "https://www.simplyrecipes.com/snacks-and-appetizer-recipes-5090762"
 else:
     startUrl = ""
-startIngredients = ['mushrooms']
+startIngredients = request.form.get("Ingredients")
 listOfRecipes = []
 Scraping(startUrl)
 
@@ -60,6 +60,4 @@ for recipe in eachUrl:
 @app.route("/", methods=["GET", "POST"])
 def home():
     print(request.form)
-    print(request.form.get("account"))
     return ("base.html")
-
