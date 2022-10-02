@@ -50,10 +50,10 @@ else:
 startIngredients = ['mushrooms']
 listOfRecipes = []
 Scraping(startUrl)
-
 for recipe in eachUrl:
     if all(item in eachUrl[recipe] for item in startIngredients):
         print(eachUrl[recipe])
+
 #print("Time after compairing" + str(time.time_ns()))
 
 #print(eachUrl)
@@ -61,5 +61,6 @@ for recipe in eachUrl:
 def home():
     print(request.form)
     print(request.form.get("account"))
+    print(request.form.get("mealType"))
     return ("base.html")
 
