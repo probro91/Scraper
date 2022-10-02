@@ -22,13 +22,19 @@ def Scraping(WebUrl):
         spans = soupIngredient.find_all("span", attrs={"data-ingredient-name":"true"})
         recipeTitle = soupIngredient.find("h1", {"class": "heading__title"})
         listOfIngredients.append(recipeTitle.text)
+        imageURLs = soupIngredient.find_all('img')
+        for imgLink in imageURLs:
+            image = str(imgLink.get('src'))
+            if "-LEAD-" in image:
+                listOfIngredients.append(image)
+                break
         for ingredient in spans:
             listOfIngredients.append(ingredient.text)
         eachUrl.update({recipe:listOfIngredients})
     #print("Time after ingredients" + str(time.time_ns()))
     
 eachUrl = {}
-mealType = input("Do you want 'Breakfast', 'Lunch', 'Dinner', 'Dessert, or 'Snacks&Apps' recipes?")
+mealType = input("Do you want 'Breakfast', 'Lunch', 'Dinner', 'Dessert, or 'Snacks&Apps' recipes? ")
 if mealType.lower() == 'breakfast':
     startUrl = "https://www.simplyrecipes.com/breakfast-recipes-5091541"
 elif mealType.lower() == 'lunch':
