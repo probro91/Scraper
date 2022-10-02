@@ -3,10 +3,10 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal finance</title>
+    <title>Scrapps</title>
   </head>
   <body>
-    <h1>Add transaction</h1>
+    <h1>What ingredients do you have?</h1>
     <form method = "POST">
       
       <div class="form__fieldset">
@@ -17,6 +17,7 @@
       <div class="form__fieldset">
         <label for="mealType" class="form__label">Meal</label>
         <select name="mealType" id="mealType" class="form__input form__select">
+          <option value="Enter a meal type">Selection</option> 
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
@@ -29,7 +30,7 @@
         <input
           class="form__submit form__input"
           type="submit"
-          value="Add transaction"
+          value="Submit"
         />
       </div>
     </form>
