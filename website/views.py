@@ -4,7 +4,7 @@ import bs4 as BeautifulSoup
 import requests
 import time
 
-from soupsieve import match
+#from soupsieve import match
 
 eachUrl = {}
 listOfRecipes = []
@@ -61,10 +61,10 @@ def home():
             startUrl = "https://www.simplyrecipes.com/snacks-and-appetizer-recipes-5090762"
         else:
             startUrl = ""
+        startIngredients = []
         startIngredients = ((str)(request.form["Ingredients"])).split(", ")
         Scraping(startUrl)
         for recipe in eachUrl:
             if all(item in eachUrl[recipe] for item in startIngredients):
                 matchingRecipes.update({recipe:eachUrl[recipe]})
-
     return render_template("base.html", ingredients=matchingRecipes)

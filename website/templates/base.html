@@ -10,12 +10,12 @@
     <form method = "POST">
       
       <div class="form__fieldset">
-        <label for="Ingredients" class="form__label">Ingredients:</label>
+        <label for="Ingredients" class="form__label">Ingredients: </label>
         <input type="strings" name="Ingredients" id="Ingredients" class="form__input" />
       </div>
 
       <div class="form__fieldset">
-        <label for="mealType" class="form__label">Meal</label>
+        <label for="mealType" class="form__label">Meal: </label>
         <select name="mealType" id="mealType" class="form__input form__select">
           <option value="Enter a meal type">Selection</option> 
           <option value="Breakfast">Breakfast</option>
@@ -25,7 +25,6 @@
           <option value="Snacks and Appitizers">Snacks and Appitizers</option>
         </select>
       </div>
-
       <div class="form__fieldset">
         <input
           class="form__submit form__input"
@@ -35,7 +34,5 @@
       </div>
     </form>
   </body>
-  {% for recipe in ingredients %}
-    <h1>{{ingredients.recipe}}</h1>
-  {% endfor%}
+    <h1>{{ingredients}}</h1>
 </html>
