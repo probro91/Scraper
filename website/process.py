@@ -6,4 +6,4 @@ app = Flask(__name__)
 def home():
     print(request.form)
     print(request.form.get("account"))
-    return render_template("base.html")
+    return ("base.html")

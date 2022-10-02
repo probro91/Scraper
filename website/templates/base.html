@@ -8,22 +8,18 @@
   <body>
     <h1>Add transaction</h1>
     <form>
+      
       <div class="form__fieldset">
-        <label for="date" class="form__label">Date:</label>
-        <input type="date" name="date" id="date" class="form__input" />
+        <label for="amount" class="form__label">Ingredients:</label>
+        <input type="strings" name="mealType" id="mealType" class="form__input" />
       </div>
 
       <div class="form__fieldset">
-        <label for="amount" class="form__label">Amount:</label>
-        <input type="number" name="amount" id="amount" class="form__input" />
-      </div>
-
-      <div class="form__fieldset">
-        <label for="account" class="form__label">Account:</label>
+        <label for="account" class="form__label">Meal</label>
         <select name="account" id="account" class="form__input form__select">
-          <option value="Checking">Checking</option>
-          <option value="Savings">Savings</option>
-          <option value="Investment">Investment</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
         </select>
       </div>
 
