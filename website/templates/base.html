@@ -34,5 +34,7 @@
       </div>
     </form>
   </body>
-    <h1>{{ingredients}}</h1>
+  {%- for recipe in ingredients.items() %}
+    <h1>{{recipe}}</h1>
+  {% endfor %}
 </html>

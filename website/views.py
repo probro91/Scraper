@@ -27,6 +27,7 @@ def Scraping(WebUrl):
         code = requests.get(recipe).text
         soupIngredient = BeautifulSoup.BeautifulSoup(code, 'html.parser')
         listOfIngredients = []
+        listOfIngredients.append(recipe)
         spans = soupIngredient.find_all("span", attrs={"data-ingredient-name":"true"})
         recipeTitle = soupIngredient.find("h1", {"class": "heading__title"})
         listOfIngredients.append(recipeTitle.text)
