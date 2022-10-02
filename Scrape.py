@@ -50,14 +50,21 @@ else:
 startIngredients = request.form.get("Ingredients")
 listOfRecipes = []
 Scraping(startUrl)
-
 for recipe in eachUrl:
     if all(item in eachUrl[recipe] for item in startIngredients):
         print(eachUrl[recipe])
+
 #print("Time after compairing" + str(time.time_ns()))
 
 #print(eachUrl)
 @app.route("/", methods=["GET", "POST"])
 def home():
     print(request.form)
+<<<<<<< HEAD
     return ("base.html")
+=======
+    print(request.form.get("account"))
+    print(request.form.get("mealType"))
+    return ("base.html")
+
+>>>>>>> 6c88f9dab95a168548882b322153ee19ea14e90c
