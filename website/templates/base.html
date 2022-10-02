@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Add transaction</h1>
-    <form>
+    <form method = "POST">
       
       <div class="form__fieldset">
         <label for="Ingredients" class="form__label">Ingredients:</label>
@@ -34,4 +34,7 @@
       </div>
     </form>
   </body>
+  {% for recipe in ingredients %}
+    <h1>{{ingredients.recipe}}</h1>
+  {% endfor%}
 </html>

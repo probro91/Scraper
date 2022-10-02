@@ -28,6 +28,10 @@ def Scraping(WebUrl):
         spans = soupIngredient.find_all("span", attrs={"data-ingredient-name":"true"})
         recipeTitle = soupIngredient.find("h1", {"class": "heading__title"})
         listOfIngredients.append(recipeTitle.text)
+        for imgLink in soupIngredient.findAll('img'):
+            image = imgLink.get('src')
+            if "-LEAD-" in image:
+                listOfIngredients.append(image)
         for ingredient in spans:
             listOfIngredients.append(ingredient.text)
         eachUrl.update({recipe:listOfIngredients})
@@ -59,4 +63,4 @@ for recipe in eachUrl:
 #print(eachUrl)
 @app.route("/", methods=["GET", "POST"])
 def home():
-    return ("base.html")
+    return render_template("base.html", ingredients=eachUrl)
