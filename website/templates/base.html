@@ -33,8 +33,25 @@
         />
       </div>
     </form>
+    <table>
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Ingredients</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in output_data %}
+          <tr>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </body>
-  {%- for recipe in ingredients.items() %}
-    <h1>{{recipe}}</h1>
-  {% endfor %}
 </html>
