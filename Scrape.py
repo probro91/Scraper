@@ -1,5 +1,8 @@
 import bs4 as BeautifulSoup # Parses HTMl
 import requests # Gets the HTML source code
+import mysql.connector # Allows Python to execute SQL commands
+
+
 
 def Scraping(WebUrl): # Gets all the recipes for a meal type, along with their url, image url, title, and ingredients
     url = WebUrl
@@ -61,5 +64,19 @@ for recipe in eachUrl:
     if all(item in eachUrl[recipe] for item in startIngredients):
         matchingRecipes.update({recipe:eachUrl[recipe]})
 
-for recipe in matchingRecipes.values():
-    print (recipe)
+#for recipe in matchingRecipes.values():
+#    print (recipe)
+mealTypes = ["Breakfast", "Lunch", "Dinner", "Dessert", "SnacksAndApps"]
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="root",
+    database="ScrapsRecipes"
+    )
+
+mycursor = mydb.cursor(buffered=True)
+
+for mealType in mealTypes:
+    for recipe in eachUrl:
+        mycursor.execute("INSERT INTO " + mealType + " (url, name, imageUrl, ingredients) VALUES (%s,%s,%s,%s)", 
+        (recipe,eachUrl[recipe][1],eachUrl[recipe][2],str(eachUrl[recipe][3:])))

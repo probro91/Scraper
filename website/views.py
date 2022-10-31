@@ -11,13 +11,6 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor(buffered=True)
 
-result = ""
-data = ""
-
-htmlCode = []
-
-tbl = "<tr><td>URL</td><td>Title</td><td>Image</td><td>Ingredients</td></tr>"
-htmlCode.append(tbl)
 """
 Creates the database:
 mycursor.execute("CREATE DATABASE ScrapsRecipes") 
@@ -51,7 +44,12 @@ def home():
         for x in range(1,len(startIngredients)):
             sql += " AND ingredients LIKE '%" + startIngredients[x] + "%'"
         mycursor.execute(sql)
-        return render_template("base.html", output_data = mycursor)
+        data = []
+        for i in mycursor:
+            data.append(list(i))
+        for i in data:
+            newString = i[3][2:len(i[3]) - 2]
+            i[3] = newString.split("', '")
+        return render_template("base.html", output_data = data)
     if request.method == "GET":
-        mycursor.execute("SELECT * FROM Breakfast")
         return render_template("base.html", output_data = [])
