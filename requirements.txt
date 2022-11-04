@@ -1,5 +1,4 @@
 brotlipy==0.7.0
-bs4==0.0.1
 certifi @ file:///C:/b/abs_4f5wo627a3/croots/recipe/certifi_1663615677642/work/certifi
 cffi @ file:///C:/Windows/Temp/abs_6808y9x40v/croots/recipe/cffi_1659598653989/work
 charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
@@ -20,10 +19,7 @@ mysql-connector-python==8.0.30
 mysqlclient==2.1.1
 Pillow @ file:///D:/bld/pillow_1660386017005/work
 protobuf==3.20.1
-PyAutoGUI @ file:///D:/bld/pyautogui_1634124302162/work
 pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
-PyGetWindow==0.0.9
-PyMsgBox @ file:///home/conda/feedstock_root/build_artifacts/pymsgbox_1602398310849/work
 pyOpenSSL @ file:///opt/conda/conda-bld/pyopenssl_1643788558760/work
 pyperclip==1.8.2
 PyRect==0.2.0
@@ -31,8 +27,6 @@ PyScreeze @ file:///home/conda/feedstock_root/build_artifacts/pyscreeze_16187496
 PySocks @ file:///C:/ci/pysocks_1605307512533/work
 PyTweening==1.0.3
 requests @ file:///C:/ci/requests_1657735342357/work
-soupsieve @ file:///tmp/build/80754af9/soupsieve_1636706018808/work
-urllib3 @ file:///C:/Windows/TEMP/abs_65ynz4fdmi/croots/recipe/urllib3_1659110473919/work
 Werkzeug @ file:///opt/conda/conda-bld/werkzeug_1645628268370/work
 win-inet-pton @ file:///C:/ci/win_inet_pton_1605306162074/work
 wincertstore==0.2
