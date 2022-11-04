@@ -1,4 +1,3 @@
-beautifulsoup4 @ file:///C:/ci/beautifulsoup4_1650293025093/work
 brotlipy==0.7.0
 bs4==0.0.1
 certifi @ file:///C:/b/abs_4f5wo627a3/croots/recipe/certifi_1663615677642/work/certifi
