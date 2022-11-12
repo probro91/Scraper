@@ -1,7 +1,6 @@
 import bs4 as BeautifulSoup # Parses HTMl
 import requests # Gets the HTML source code
-import mysql.connector # Allows Python to execute SQL commands
-
+import json
 
 
 def Scraping(WebUrl): # Gets all the recipes for a meal type, along with their url, image url, title, and ingredients
@@ -10,7 +9,7 @@ def Scraping(WebUrl): # Gets all the recipes for a meal type, along with their u
     plain = code.text
     soup = BeautifulSoup.BeautifulSoup(plain, 'html.parser')
 
-    #Finds all the liks to the recipes and adds them to a list
+    #Finds all the liks to the recipes and asdds them to a list
     for link in soup.findAll('a'): 
         recipe = link.get('href')
         if "-recipe-" in recipe:
@@ -34,7 +33,7 @@ def Scraping(WebUrl): # Gets all the recipes for a meal type, along with their u
             listOfIngredients.append(ingredient.text)
         eachUrl.update({recipe:listOfIngredients})
     
-eachUrl = {}
+
 mealType = input("What meal type is it? ")
 if mealType.lower() == 'breakfast':
     startUrl = "https://www.simplyrecipes.com/breakfast-recipes-5091541"
@@ -55,28 +54,32 @@ else:
     startUrl = ""
 
 startIngredients = []
-startIngredients = (input("Which ingredients do you have? ")).split(", ")
+#startIngredients = (input("Which ingredients do you have? ")).split(", ")
 listOfRecipes = []
 matchingRecipes = {}
-Scraping(startUrl)
+#Scraping(startUrl)
 #Adds only the recipes with matching ingredietns to the dictionary
+"""
 for recipe in eachUrl:
     if all(item in eachUrl[recipe] for item in startIngredients):
         matchingRecipes.update({recipe:eachUrl[recipe]})
-
+"""
 #for recipe in matchingRecipes.values():
 #    print (recipe)
-mealTypes = ["Breakfast", "Lunch", "Dinner", "Dessert", "SnacksAndApps"]
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="root",
-    database="ScrapsRecipes"
-    )
-
-mycursor = mydb.cursor(buffered=True)
+mealTypes = ["Dinner", "Dessert", "SnacksAndApps"]
 
 for mealType in mealTypes:
-    for recipe in eachUrl:
-        mycursor.execute("INSERT INTO " + mealType + " (url, name, imageUrl, ingredients) VALUES (%s,%s,%s,%s)", 
-        (recipe,eachUrl[recipe][1],eachUrl[recipe][2],str(eachUrl[recipe][3:])))
+  if mealType.lower() == 'dinner':
+    startUrl = "https://www.simplyrecipes.com/dinner-recipes-5091433"
+    mealType = "Dinner"
+  if mealType.lower() == 'dessert':
+    startUrl = "https://www.simplyrecipes.com/dessert-recipes-5091513"
+    mealType = "Dessert"
+  if mealType.lower() == 'snacksandapps':
+    startUrl = "https://www.simplyrecipes.com/snacks-and-appetizer-recipes-5090762"
+    mealType = "SnacksAndApps"
+  eachUrl = {}
+  Scraping(startUrl)
+  json_object = json.dumps(eachUrl, indent=4)
+  with open("" + mealType + ".json", "w") as outfile:
+    outfile.write(json_object)

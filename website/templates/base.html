@@ -14,7 +14,6 @@
   <body>
     <h1>What ingredients do you have?</h1>
     <form method = "POST">
-      <!--yo yo-->
       <div class="form__fieldset">
         <label for="Ingredients" class="form__label">Ingredients: </label>
         <input type="strings" name="Ingredients" id="Ingredients" class="form__input" />
@@ -23,12 +22,13 @@
       <div class="form__fieldset">
         <label for="mealType" class="form__label">Meal: </label>
         <select name="mealType" id="mealType" class="form__input form__select">
-          <option value="Enter a meal type">Selection</option> 
+          <option value="Selection">Enter a meal type</option> 
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
           <option value="Dessert">Dessert</option>
-          <option value="Snacks and Appitizers">Snacks and Appitizers</option>
+          <option value="SnacksAndApps">Snacks and Appitizers</option>
+          <option value="Any">Any</option>
         </select>
       </div>
       <div class="form__fieldset">
@@ -55,7 +55,7 @@
             <td>{{item[1]}}</td>
             <td><img src={{item[2]}} alt = "image"></td>
             <td>
-              {%- for ingredient in item[3] %}
+              {% for ingredient in item[3:] %} 
                 {{ingredient}},
               {% endfor %}
             </td>
